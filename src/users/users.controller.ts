@@ -13,6 +13,7 @@ export class UsersController {
         return this.usersService.findAll();
     }
 
+    @UseGuards(JwtGuard)
     @Post('')
     batchRegister(@Body() dto: BatchDto) {
         return this.usersService.batchRegister(dto);
