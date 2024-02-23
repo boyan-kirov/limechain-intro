@@ -1,6 +1,6 @@
 import { Type } from 'class-transformer';
-import { IsArray, IsEmail, IsString, ValidateNested } from 'class-validator';
-import { SignUpDto } from 'src/auth/dtos/signup.dto';
+import { IsArray, ValidateNested } from 'class-validator';
+import { SignUpDto } from '../../auth/dtos/signup.dto';
 
 export class BatchDto {
     @IsArray()

@@ -4,7 +4,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { BatchDto } from './dtos/batch.dto';
 import * as bcrypt from 'bcrypt';
-import { SignUpDto } from 'src/auth/dtos/signup.dto';
+import { SignUpDto } from '../auth/dtos/signup.dto';
 
 import { ConfigService } from '@nestjs/config';
 import { spawn } from 'child_process';

@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { UsersService } from './users.service';
 import { getModelToken } from '@nestjs/mongoose';
 import { ConfigService } from '@nestjs/config';
-import { SignUpDto } from 'src/auth/dtos/signup.dto';
+import { SignUpDto } from '../auth/dtos/signup.dto';
 
 describe('UsersService', () => {
     let usersService;
@@ -86,14 +86,4 @@ describe('UsersService', () => {
             expect(hash.length).toEqual(60);
         });
     });
-
-    // describe.only('Create user', () => {
-    //     it('should hash the password with salt from .env', async () => {
-    //         jest.spyOn(usersService, 'hashPassword');
-    //         const createdUser = { ...dto, _id: 'user_id', password: 'password' };
-    //         userModelMock.create.mockResolvedValue(createdUser);
-    //         await usersService.create(dto);
-    //         expect(usersService.hashPassword).toHaveBeenCalledWith(dto.password, 10);
-    //     });
-    // });
 });
