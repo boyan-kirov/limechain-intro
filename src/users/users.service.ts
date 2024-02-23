@@ -15,6 +15,7 @@ export class UsersService {
 
     async hashPassword(
         password: string,
+        // Get rounds from .env if not provided
         saltRounds: number = parseInt(this.configService.get<string>('SALT_ROUNDS')),
     ): Promise<string> {
         return await bcrypt.hash(password, saltRounds);
@@ -26,8 +27,7 @@ export class UsersService {
 
     async create(dto: SignUpDto): Promise<UserDocument> {
         const hash = await this.hashPassword(dto.password, 10);
-        const user = new this.userModel({ email: dto.email, password: hash });
-        await user.save();
+        const user = await this.userModel.create({ email: dto.email, password: hash });
 
         const userObject = user.toObject();
         delete userObject.password;

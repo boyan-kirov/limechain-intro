@@ -86,4 +86,16 @@ describe('UsersService', () => {
             expect(hash.length).toEqual(60);
         });
     });
+
+    describe('Create user', () => {
+        it('Should create a user', async () => {
+            jest.spyOn(usersService, 'hashPassword').mockResolvedValue('hashed_password');
+            const createdUser = { ...dto, _id: '123', password: 'password', toObject: () => createdUser };
+            userModelMock.create.mockResolvedValue(createdUser);
+            const user = await usersService.create(dto);
+            expect(usersService.hashPassword).toHaveBeenCalledWith(dto.password, 10);
+            expect(user.password).toBeUndefined();
+            expect(user.email).toEqual(dto.email);
+        });
+    });
 });
