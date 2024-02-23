@@ -9,10 +9,6 @@ export class AuthController {
     @Post('signup')
     signup(@Body() dto: SignUpDto) {
         return this.authService.signup(dto);
-        // const user = await this.authService.signup(signUpDto);
-        // return {
-        //     user: user.id,
-        // };
     }
 
     @Post('signin')

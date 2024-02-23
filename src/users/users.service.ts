@@ -1,20 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { User, UserDocument } from './user.schema';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model, UpdateWriteOpResult } from 'mongoose';
+import { Model } from 'mongoose';
 import { BatchDto } from './dtos/batch.dto';
 import * as bcrypt from 'bcrypt';
 import { SignUpDto } from 'src/auth/dtos/signup.dto';
 
-import { promisify } from 'util';
 import { ConfigService } from '@nestjs/config';
 import { spawn } from 'child_process';
-import internal from 'stream';
-
-type EmailPasswordPair = {
-    email: string;
-    password: string;
-};
 
 @Injectable()
 export class UsersService {
