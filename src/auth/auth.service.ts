@@ -3,6 +3,7 @@ import { SignUpDto } from './dtos/signup.dto';
 import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
+import { UserDocument } from 'src/users/user.schema';
 
 @Injectable()
 export class AuthService {
@@ -12,13 +13,13 @@ export class AuthService {
         private configService: ConfigService,
     ) {}
 
-    async signup(dto: SignUpDto) {
+    async signup(dto: SignUpDto): Promise<UserDocument> {
         const existingUser = await this.usersService.find(dto.email);
         if (existingUser) throw new ForbiddenException('Email already in use');
         return this.usersService.create(dto);
     }
 
-    async signin(dto: SignUpDto) {
+    async signin(dto: SignUpDto): Promise<{ access_token: string }> {
         const user = await this.usersService.find(dto.email);
         if (!user || !(await this.usersService.comparePasswords(dto.password, user.password))) {
             throw new ForbiddenException('Email or password is wrong');

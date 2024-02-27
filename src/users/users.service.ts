@@ -21,7 +21,7 @@ export class UsersService {
         return await bcrypt.hash(password, saltRounds);
     }
 
-    async comparePasswords(password: string, hash: string) {
+    async comparePasswords(password: string, hash: string): Promise<boolean> {
         return await bcrypt.compare(password, hash);
     }
 
@@ -34,7 +34,7 @@ export class UsersService {
         return userObject;
     }
 
-    async batchRegister(dto: BatchDto) {
+    async batchRegister(dto: BatchDto): Promise<string[]> {
         const allUsers = await this.findAll();
         const allEmails = allUsers.map((user) => user.email);
         const newUsers = dto.users.filter((user) => !allEmails.includes(user.email));
