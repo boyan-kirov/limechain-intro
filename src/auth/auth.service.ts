@@ -3,7 +3,7 @@ import { SignUpDto } from './dtos/signup.dto';
 import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
-import { UserDocument } from 'src/users/user.schema';
+import { UserDocument } from '../users/user.schema';
 
 @Injectable()
 export class AuthService {
